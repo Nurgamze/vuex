@@ -1,17 +1,48 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <p>
+    {{ $store.state.user }},
+    {{ $store.state.theme }},
+    {{ $store.state.userList }},
+
+      <ul>
+    <li v-for="permissions in $store.state.permissions" :key="permissions">
+    {{permissions}}</li>
+  </ul>
+  
+ 
+   <ul>
+    <li v-for="itemList in $store.state.itemList" :key="itemList">
+    {{itemList.title}}</li>
+  </ul>
+
+
+{{$store.state.fullName}}
+<button @click="updateName" >fullname bilgisini değiştir</button>
+
+
+
+    
+  </p>
+
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+
+
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+  name: "App",
+  created() {
+    console.log(this.$store.state.person);
+    console.log(this.$store.state.theme);
+    console.log(this.$store.state.itemList.filter(i=>i.type=="mobilya"))
+    console.log(this.$store.getters.wooditems)
+    console.log(this.$store.getters.activeUser)
+    
+  },
+ 
+
+};
 </script>
 
 <style>
